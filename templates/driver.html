@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ driver.name }} | Paddock Pass</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #101014;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            background: #19191f;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #303039;
+        }
+
+        .logo {
+            color: #e10600;
+            font-size: 23px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #e10600;
+        }
+
+        .back {
+            display: inline-block;
+            margin: 35px 7%;
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            color: #e10600;
+        }
+
+        /* PROFILE HEADER */
+
+        .profile-header {
+            max-width: 1050px;
+            margin: 10px auto 55px;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .driver-photo {
+            width: 165px;
+            height: 195px;
+            flex-shrink: 0;
+            background: #25252e;
+            border-radius: 12px;
+            overflow: hidden;
+            border-bottom: 4px solid #e10600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .driver-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .profile-info .tag {
+            color: #e10600;
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+        }
+
+        .profile-info h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .profile-info .team {
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+
+        .number {
+            color: #e10600;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        /* GENERAL SECTIONS */
+
+        .section {
+            max-width: 1050px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .section-title {
+            font-size: 23px;
+            border-left: 4px solid #e10600;
+            padding-left: 13px;
+            margin-bottom: 22px;
+            text-transform: uppercase;
+        }
+
+        .about {
+            background: #1c1c23;
+            padding: 25px;
+            border-radius: 10px;
+            color: #bbb;
+            line-height: 1.9;
+            border: 1px solid #303039;
+        }
+
+        /* STATISTICS */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: #1c1c23;
+            border: 1px solid #303039;
+            border-radius: 10px;
+            padding: 22px 15px;
+            text-align: center;
+        }
+
+        .stat-card h2 {
+            font-size: 30px;
+            color: #e10600;
+            margin-bottom: 8px;
+        }
+
+        .stat-card p {
+            color: #aaa;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* INFORMATION */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .info-item {
+            background: #1c1c23;
+            padding: 18px;
+            border-radius: 8px;
+            border: 1px solid #303039;
+        }
+
+        .info-item span {
+            display: block;
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .info-item strong {
+            font-size: 16px;
+        }
+
+        /* CAREER */
+
+        .career-box {
+            background: #1c1c23;
+            border: 1px solid #303039;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .career-box p {
+            color: #bbb;
+            line-height: 1.8;
+        }
+
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .team-tag {
+            background: #262630;
+            border: 1px solid #3b3b46;
+            padding: 12px 18px;
+            border-radius: 7px;
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        .empty {
+            color: #999;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #19191f;
+            text-align: center;
+            padding: 25px;
+            margin-top: 55px;
+            color: #777;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 18px;
+            }
+
+            nav a {
+                margin: 0 7px;
+            }
+
+            .profile-header {
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .driver-photo {
+                width: 115px;
+                height: 150px;
+            }
+
+            .profile-info h1 {
+                font-size: 27px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media(max-width: 420px) {
+            .profile-header {
+                flex-direction: column;
+            }
+
+            .driver-photo {
+                width: 140px;
+                height: 165px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+
+    <h2 class="logo">PADDOCK<span>PASS.</span></h2>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/drivers">Drivers</a>
+        <a href="/teams">Teams</a>
+        <a href="/circuits">Circuits</a>
+
+        {% if session.get('user_id') %}
+            <span>Hi, {{ session.get('user_name') }}</span>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+        {% endif %}
+    </div>
+
+</nav>
+
+
+<a href="/drivers" class="back">← BACK TO DRIVERS</a>
+
+
+<!-- PROFILE HEADER -->
+
+<section class="profile-header">
+
+    <div class="driver-photo">
+
+        <img
+            src="{{ url_for('static', filename='images/drivers/' + driver.slug + '.jpg') }}"
+            alt="{{ driver.name }}"
+            onerror="this.style.display='none'; this.parentElement.innerText='PHOTO COMING SOON';"
+        >
+
+    </div>
+
+    <div class="profile-info">
+
+        <p class="tag">FORMULA 1 DRIVER</p>
+
+        <h1>{{ driver.name }}</h1>
+
+        <p class="team">{{ driver.team }}</p>
+
+        <div class="number">#{{ driver.number }}</div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section">
+
+    <h2 class="section-title">About The Driver</h2>
+
+    <div class="about">
+        {{ driver.bio }}
+    </div>
+
+</section>
+
+
+<!-- CAREER STATISTICS -->
+
+<section class="section">
+
+    <h2 class="section-title">Career Statistics</h2>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h2>{{ driver.starts }}</h2>
+            <p>Grand Prix Starts</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>{{ driver.wins }}</h2>
+            <p>Race Wins</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>{{ driver.podiums }}</h2>
+            <p>Podiums</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>{{ driver.titles }}</h2>
+            <p>World Titles</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PERSONAL INFORMATION -->
+
+<section class="section">
+
+    <h2 class="section-title">Driver Information</h2>
+
+    <div class="info-grid">
+
+        <div class="info-item">
+            <span>FULL NAME</span>
+            <strong>{{ driver.name }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>NATIONALITY</span>
+            <strong>{{ driver.country }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>RACING NUMBER</span>
+            <strong>#{{ driver.number }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>F1 DEBUT</span>
+            <strong>{{ driver.debut }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>CURRENT TEAM</span>
+            <strong>{{ driver.team }}</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CAREER HIGHLIGHT -->
+
+<section class="section">
+
+    <h2 class="section-title">Career Highlight</h2>
+
+    <div class="career-box">
+
+        <p>{{ driver.highlight }}</p>
+
+    </div>
+
+</section>
+
+
+<!-- PREVIOUS TEAMS -->
+
+<section class="section">
+
+    <h2 class="section-title">Previous Teams</h2>
+
+    <div class="team-list">
+
+        {% for team in driver.previous_teams %}
+
+            <div class="team-tag">{{ team }}</div>
+
+        {% else %}
+
+            <p class="empty">No previous Formula 1 teams listed.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<footer>
+    PADDOCK PASS | THE WORLD OF FORMULA 1
+</footer>
+
+</body>
+</html>
+

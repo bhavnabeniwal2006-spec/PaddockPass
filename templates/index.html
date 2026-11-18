@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PADDOCKPASS | F1 Hub</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+   
+<!-- Navigation Bar -->
+<nav class="navbar">
+
+    <h2 class="logo">PADDOCK<span>PASS.</span></h2>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/drivers">Drivers</a>
+        <a href="/teams">Teams</a>
+        <a href="/circuits">Circuits</a>
+        <a href="#about">About</a>
+
+        {% if session.get('user_id') %}
+            <span>Hi, {{ session.get('user_name') }}</span>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+        {% endif %}
+    </div>
+
+</nav>
+
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="tagline">THE WORLD OF FORMULA 1</p>
+
+            <h1>WELCOME TO<br>THE PADDOCK.</h1>
+
+            <p class="description">
+                Experience the speed, passion and
+                adrenaline of Formula 1.
+                Everything F1, all in one place.
+            </p>
+
+            <a href="/drivers" class="btn">
+                EXPLORE F1
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Introduction Section -->
+    <section class="about">
+
+        <p class="tagline">BUILT FOR THE FANS</p>
+
+        <h2>WHERE SPEED MEETS PASSION.</h2>
+
+        <p>
+            Formula 1 is more than just cars racing around a track.
+            It is a world of engineering, strategy, teamwork and
+            fearless drivers pushing their limits.
+        </p>
+
+        <p>
+            Paddock Pass brings this exciting world closer to you.
+            Explore the people, teams and legendary circuits that
+            make every race weekend unforgettable.
+        </p>
+
+    </section>
+
+
+    <!-- Featured Drivers -->
+    <section class="drivers" id="drivers">
+
+        <p class="tagline">MEET THE RACERS</p>
+
+        <h2>FEATURED DRIVERS</h2>
+
+        <div class="driver-container">
+
+            <div class="driver-card">
+                <p class="driver-number">44</p>
+                <h3>Lewis Hamilton</h3>
+                <p class="driver-team">SCUDERIA FERRARI</p>
+            </div>
+
+            <div class="driver-card">
+                <p class="driver-number">3</p>
+                <h3>Max Verstappen</h3>
+                <p class="driver-team">RED BULL RACING</p>
+            </div>
+
+            <div class="driver-card">
+                <p class="driver-number">16</p>
+                <h3>Charles Leclerc</h3>
+                <p class="driver-team">SCUDERIA FERRARI</p>
+            </div>
+
+        </div>
+
+        <a href="/drivers" class="btn">VIEW ALL DRIVERS</a>
+
+    </section>
+
+
+    <!-- Explore Sections -->
+    <section class="drivers">
+
+        <p class="tagline">YOUR F1 GUIDE</p>
+
+        <h2>EXPLORE THE PADDOCK</h2>
+
+        <div class="driver-container">
+
+            <div class="driver-card">
+                <h3>THE DRIVERS</h3>
+                <p>
+                    Meet the racers, discover their careers
+                    and learn about their achievements.
+                </p>
+                <a href="/drivers" class="btn">EXPLORE DRIVERS</a>
+            </div>
+
+            <div class="driver-card">
+                <h3>THE TEAMS</h3>
+                <p>
+                    Discover the constructors, their history
+                    and the people behind the cars.
+                </p>
+                <a href="/teams" class="btn">EXPLORE TEAMS</a>
+            </div>
+
+            <div class="driver-card">
+                <h3>THE CIRCUITS</h3>
+                <p>
+                    Explore famous racing tracks from
+                    around the world.
+                </p>
+                <a href="/circuits" class="btn">EXPLORE CIRCUITS</a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- F1 Facts Section -->
+    <section class="about">
+
+        <p class="tagline">A LITTLE F1 KNOWLEDGE</p>
+
+        <h2>BEYOND THE FINISH LINE.</h2>
+
+        <div class="driver-container">
+
+            <div class="driver-card">
+                <h3>RACE WEEKEND</h3>
+                <p>
+                    A typical Grand Prix weekend includes
+                    practice sessions, qualifying and the main race.
+                </p>
+            </div>
+
+            <div class="driver-card">
+                <h3>CONSTRUCTORS</h3>
+                <p>
+                    Teams compete for the Constructors'
+                    Championship by collecting points through
+                    their drivers.
+                </p>
+            </div>
+
+            <div class="driver-card">
+                <h3>RACE STRATEGY</h3>
+                <p>
+                    Tyre choices, pit stops and timing can
+                    make a huge difference to a driver's race.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+    <section class="about" id="about">
+
+        <p class="tagline">ABOUT PADDOCK PASS</p>
+
+        <h2>MORE THAN JUST A RACE.</h2>
+
+        <p>
+            Paddock Pass is an F1 information website created
+            for fans who want to explore the world of Formula 1
+            in one place.
+        </p>
+
+        <p>
+            From driver profiles and team information to
+            famous circuits, this website brings together
+            different parts of the sport in a simple and
+            easy-to-explore format.
+        </p>
+
+        <p>
+            This project was developed as part of a learning
+            journey in web development using HTML, CSS and
+            Python Flask.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        © 2026 PADDOCK PASS | BUILT FOR F1 FANS
+    </footer>
+
+</body>
+</html>
+
+

@@ -1,0 +1,284 @@
+
+/* GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #101010;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVIGATION */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    background: #101010;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #e10600;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #e10600;
+}
+
+/* HERO SECTION */
+
+.hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 80px 10%;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(0,0,0,0.95),
+        rgba(0,0,0,0.3)
+    ),
+    url("images/heropic2.jpg")
+    center/cover no-repeat;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.tagline {
+    color: #e10600;
+    letter-spacing: 4px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: 65px;
+    margin: 25px 0;
+    line-height: 1.1;
+}
+
+.description {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-block;
+    background: #e10600;
+    color: white;
+    padding: 14px 25px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    background: white;
+    color: #e10600;
+}
+
+/* GENERAL SECTIONS */
+
+.drivers {
+    padding: 80px 10%;
+}
+
+.drivers h2 {
+    font-size: 35px;
+    margin: 20px 0 35px;
+}
+
+/* CARD GRID */
+
+.driver-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.driver-card {
+    min-width: 0;
+    background: #1d1d1d;
+    padding: 30px 25px;
+    border-left: 4px solid #e10600;
+    transition: 0.3s;
+}
+
+.driver-card:hover {
+    transform: translateY(-6px);
+    background: #292929;
+}
+
+.driver-card h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.driver-card p {
+    color: #aaa;
+    line-height: 1.7;
+}
+
+/* DRIVER NUMBERS */
+
+.driver-number {
+    color: #e10600;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.driver-team {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+
+/* ABOUT SECTIONS */
+
+.about {
+    padding: 75px 10%;
+    background: #1b1b1b;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 32px;
+    margin: 20px 0;
+}
+
+.about p {
+    max-width: 850px;
+    margin: 0 auto 15px;
+    color: #aaa;
+    line-height: 1.9;
+}
+
+/* ABOUT SECTION CARDS */
+
+.about .driver-container {
+    margin-top: 35px;
+    text-align: left;
+}
+
+/* PAGE HEADINGS */
+
+.page-heading {
+    padding: 80px 10% 30px;
+    background: #181818;
+}
+
+.page-heading h1 {
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+.page-heading > p:last-child {
+    color: #aaa;
+}
+
+/* DRIVER INFORMATION */
+
+.driver-info {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 15px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #777;
+    font-size: 12px;
+    border-top: 1px solid #292929;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 800px) {
+
+    .driver-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 50px;
+    }
+
+    .navbar {
+        padding: 20px 5%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .nav-links a {
+        margin: 0 7px;
+        font-size: 12px;
+    }
+
+    .driver-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: 500px;
+        padding: 60px 7%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .drivers,
+    .about {
+        padding: 55px 7%;
+    }
+
+    .page-heading h1 {
+        font-size: 36px;
+    }
+}

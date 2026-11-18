@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Drivers | Paddock Pass</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #101014;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            padding: 22px 7%;
+            background: #19191f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: #e10600;
+        }
+
+        .heading {
+            padding: 55px 7% 30px;
+        }
+
+        .heading h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #aaa;
+        }
+
+        .driver-grid {
+            padding: 20px 7% 70px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 25px;
+        }
+
+        .driver-card {
+            background: #1c1c23;
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+            border: 1px solid #303039;
+        }
+
+        .driver-card:hover {
+            transform: translateY(-7px);
+            border-color: #e10600;
+        }
+
+        .driver-photo {
+            height: 260px;
+            background: #292932;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #aaa;
+        }
+
+        .driver-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .driver-info {
+            padding: 18px;
+        }
+
+        .driver-info h2 {
+            font-size: 19px;
+            margin-bottom: 9px;
+        }
+
+        .driver-info p {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .view-profile {
+            display: inline-block;
+            margin-top: 12px;
+            color: #ff4b45;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+            color: #777;
+            background: #19191f;
+        }
+
+/* DRIVER SEARCH BAR */
+
+.search-form {
+    display: flex;
+    align-items: center;
+    width: 86%;
+    max-width: 600px;
+    margin: 10px 7% 15px;
+    padding: 6px;
+    background: #19191f;
+    border: 1px solid #303039;
+    border-left: 3px solid #e10600;
+    border-radius: 5px;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 15px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+}
+
+.search-form input::placeholder {
+    color: #777;
+}
+
+.search-form:focus-within {
+    border-color: #e10600;
+}
+
+.search-form button {
+    padding: 13px 20px;
+    background: #e10600;
+    color: white;
+    border: none;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background: #b80500;
+}
+
+.clear-search {
+    padding: 13px;
+    color: #aaa;
+    background: #292932;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.clear-search:hover {
+    color: white;
+}
+
+.search-result,
+.no-results {
+    width: 86%;
+    margin: 15px 7%;
+    color: #aaa;
+    font-size: 14px;
+}
+
+
+        @media(max-width: 600px) {
+            .heading h1 {
+                font-size: 32px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+.search-form {
+    width: 86%;
+    margin-left: 7%;
+    margin-right: 7%;
+}
+
+.search-form input {
+    font-size: 12px;
+    padding: 11px 8px;
+}
+
+.search-form button {
+    padding: 12px 10px;
+}
+
+        }
+
+
+.driver-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.favourite-form {
+    padding: 0 18px 18px;
+}
+
+.favourite-btn {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: white;
+    border: 1px solid #e10600;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.favourite-btn:hover {
+    background: #e10600;
+}
+
+    </style>
+</head>
+
+<body>
+
+
+    
+<!-- Navigation Bar -->
+<nav class="navbar">
+
+    <h2 class="logo">PADDOCK<span>PASS.</span></h2>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/drivers">Drivers</a>
+        <a href="/teams">Teams</a>
+        <a href="/circuits">Circuits</a>
+
+        {% if session.get('user_id') %}
+            <span>Hi, {{ session.get('user_name') }}</span>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+        {% endif %}
+        {% if session.get('user_id') %}
+    <a href="/favourites">My Favourites</a>
+    {% endif %}
+    </div>
+
+</nav>
+
+
+<section class="heading">
+    <h1>THE DRIVERS</h1>
+    <p>Meet the faces behind the fastest machines in motorsport.</p>
+</section>
+
+
+<!-- DRIVER SEARCH -->
+<form method="GET" action="{{ url_for('show_drivers') }}" class="search-form">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search by driver, team or country..."
+        value="{{ search_query }}"
+    >
+
+    <button type="submit">SEARCH</button>
+
+    <a href="/drivers" class="clear-search">CLEAR</a>
+
+</form>
+
+{% if search_query %}
+    <p class="search-result">
+        Search results for: "{{ search_query }}"
+    </p>
+{% endif %}
+
+{% if not drivers %}
+    <p class="no-results">No drivers found. Try another search.</p>
+{% endif %}
+
+<section class="driver-grid">
+
+{% for driver in drivers %}
+
+    <div class="driver-card">
+
+        <a href="{{ url_for('driver_profile', driver_slug=driver.slug) }}"
+           class="driver-link">
+
+            <div class="driver-photo">
+                <img
+                    src="{{ url_for('static', filename='images/drivers/' + driver.slug + '.jpg') }}"
+                    alt="{{ driver.name }}"
+                    onerror="this.style.display='none'; this.parentElement.innerText='PHOTO COMING SOON';"
+                >
+            </div>
+
+            <div class="driver-info">
+                <h2>{{ driver.name }}</h2>
+                <p>{{ driver.team }}</p>
+                <p>{{ driver.country }}</p>
+                <span class="view-profile">VIEW PROFILE →</span>
+            </div>
+
+        </a>
+
+        <form method="POST"
+              action="{{ url_for('toggle_favourite', driver_slug=driver.slug) }}"
+              class="favourite-form">
+
+            <input type="hidden" name="next" value="/drivers">
+
+            <button type="submit" class="favourite-btn">
+                ♡ ADD TO FAVOURITES
+            </button>
+
+        </form>
+
+    </div>
+
+{% endfor %}
+ 
+</section>
+
+<footer>
+    PADDOCK PASS | THE WORLD OF FORMULA 1
+</footer>
+
+</body>
+</html>

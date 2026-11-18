@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Favourites | Paddock Pass</title>
+    <style>
+        body {
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #e10600;
+        }
+
+        .driver {
+            background: #222;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+
+        a {
+            color: #e10600;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>MY FAVOURITE DRIVERS</h1>
+
+    {% if favourite_drivers %}
+
+        {% for driver in favourite_drivers %}
+            <div class="driver">
+                <h2>{{ driver.name }}</h2>
+                <p>{{ driver.team }}</p>
+
+                <a href="{{ url_for('driver_profile', driver_slug=driver.slug) }}">
+                    View Profile
+                </a>
+
+                <form method="POST"
+                      action="{{ url_for('toggle_favourite', driver_slug=driver.slug) }}">
+                    <input type="hidden" name="next" value="/favourites">
+                    <button type="submit">Remove Favourite</button>
+                </form>
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <p>You haven't added any favourite drivers yet!</p>
+    {% endif %}
+
+    <a href="/drivers">← Back to Drivers</a>
+
+</body>
+</html>

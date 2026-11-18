@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ page_title }} | Paddock Pass</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  
+    
+<!-- Navigation Bar -->
+<nav class="navbar">
+
+    <h2 class="logo">PADDOCK<span>PASS.</span></h2>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/drivers">Drivers</a>
+        <a href="/teams">Teams</a>
+        <a href="/circuits">Circuits</a>
+
+        {% if session.get('user_id') %}
+            <span>Hi, {{ session.get('user_name') }}</span>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+        {% endif %}
+    </div>
+
+</nav>
+
+
+    <section class="page-heading">
+        <p class="tagline">EXPLORE FORMULA 1</p>
+        <h1>{{ page_title }}</h1>
+        <p>{{ subtitle }}</p>
+    </section>
+
+    <section class="drivers">
+        <div class="driver-container">
+
+            {% for item in items %}
+
+            <div class="driver-card">
+                <p class="driver-number">
+                    {{ loop.index }}
+                </p>
+
+                <h3>{{ item.name }}</h3>
+
+                <p class="driver-info">
+                    {{ item.detail }}
+                </p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <footer>
+        © 2026 PADDOCK PASS | BUILT FOR F1 FANS
+    </footer>
+
+</body>
+</html>
